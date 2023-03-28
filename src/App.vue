@@ -32,15 +32,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 nav ul a {
   text-decoration: none;
   color: black;
   margin-inline: 5px 20px;
+  transition: .5s ease-in-out;
+}
+nav ul a:hover {
+  color: white; /* Add this line to change the text color on hover */
 }
 nav ul .login {
   border: 3px solid black;
   padding: 5px 20px;
+}
+nav ul .login:hover {
+  border: 3px solid rgb(255, 255, 255);
 }
 </style>
