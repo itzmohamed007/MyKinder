@@ -3,60 +3,47 @@ import { Icon } from "@iconify/vue";
 </script>
 
 <template>
-  <section class="hero d-grid align-items-center">
-    <div class="container">
-      <div class="inner-container bg-white rounded-4 p-5">
-        <h1 class="fs-2 fw-bold mb-5">Login</h1>
-        <form class="w-75">
+  <section class="hero container d-flex">
+    <div class="h-100 w-50 mx-5 d-flex flex-column justify-content-center text-start text-black">
+      <h1 class="fw-bold mb-3">Making Kindergarten Management More Human!</h1>
+      <p class="fs-6 fw-light"> Our system is designed to help administrators and professors to 
+        manage children's education and development ...</p>
+        <div class="mb-4">
           <div class="d-flex align-items-center">
-            <input class="border-0 " type="email" placeholder="Email">
-            <Icon class="mx-2" icon="material-symbols:mail-rounded" color="black" width="30" height="30"/>
+            <Icon icon="material-symbols:check-circle-outline-rounded" color="lavender" width="25" height="25"/>
+            <p class="ms-2 mb-0 fw-bold">user-friendly interface</p>
           </div>
-          <hr class="w-100 rounded mb-5">
           <div class="d-flex align-items-center">
-            <input class="border-0 " type="password" placeholder="Password">
-            <Icon class="mx-2" icon="material-symbols:lock" color="black" width="30" height="30"/>
+            <Icon icon="material-symbols:check-circle-outline-rounded" color="lavender" width="25" height="25"/>
+            <p class="ms-2 mb-0 fw-bold">simplified tasks management</p>
           </div>
-          <hr class="w-100 rounded mb-5">
-          <button type="button" class="btn bg-black py-2 fs-5 text-white w-100">Login</button>
-        </form>
+        </div>
+      <div class="d-flex gap-2">
+        <button class="btn px-5 py-2 bg-black text-white">Login</button>
+        <button class="explore btn px-5 py-2">Explore</button>
       </div>
     </div>
+    <div class="align-self-center me-5">
+    </div>
   </section>
-  
 </template>
 
 <style scoped>
 .hero {
-  padding: 5rem;
   height: 100vh;
-  background: url("../assets/background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: rgb(255, 255, 255);
 }
-input:focus {
-  outline: none!important;
-  border: none!important;
+.hero h1 {
+  font-size: 2.8rem !important;
 }
-input {
-  width: 100%;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
+.explore {
+  border: 2px solid black;
+  color: rgb(0, 0, 0);
 }
-hr {
-  height: 2px;
-  border: none;
-  background-color: black;
-  opacity: 1;
+.explore:hover {
+  border: 2px solid black!important;
 }
-form {
-  margin-inline: auto;
-}
-.container {
-  width: 40%;
+img {
+  width: 500px;
 }
 </style>

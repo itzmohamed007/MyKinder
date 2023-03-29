@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
     <div class="container px-4 px-lg-5">
-      <span class="navbar-brand fw-bold">MyVisa</span>
+      <span class="navbar-brand fw-bold">MyKinder</span>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -37,7 +37,7 @@ nav ul a {
   text-decoration: none;
   color: black;
   margin-inline: 5px 20px;
-  transition: .5s ease-in-out;
+  transition: .3s ease-in-out;
 }
 nav ul a:hover {
   color: white; /* Add this line to change the text color on hover */
@@ -47,6 +47,7 @@ nav ul .login {
   padding: 5px 20px;
 }
 nav ul .login:hover {
-  border: 3px solid rgb(255, 255, 255);
+  background-color: black;
+  color: white;
 }
 </style>
