@@ -9,10 +9,10 @@
       </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
           <ul class="navbar-nav fw-bold align-items-center">
-            <router-link class="nav-item rounded" to="/">Home</router-link>
+            <router-link class="nav-item rounded" to="/home">Home</router-link>
             <router-link class="nav-item rounded" to="/">About</router-link>
             <router-link class="nav-item rounded" to="/">Contact</router-link>
-            <router-link class="login nav-item rounded" to="/">Login</router-link>
+            <router-link class="login nav-item rounded" to="/login">Login</router-link>
           </ul>
         </div>
       </div>
