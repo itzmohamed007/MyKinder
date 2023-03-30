@@ -56,26 +56,55 @@ import { Icon } from "@iconify/vue";
       <img src="../assets/overview.png" alt="" />
     </div>
   </section>
-  <section class="why-us container d-flex flex-column justify-content-center">
-    <h2>Why Choose Us?</h2>
+  <section class="why-us container-fluid d-flex flex-column justify-content-center bg-black">
+    <div class="text-white">
+      <h2 class="mt-5">Why Choose Us?</h2>
+      <p class="why-choose-us mb-5">
+        Our website give a varity of features that can help you managing your
+        kindergarten with less efforts possible
+      </p>
+    </div>
     <div class="container">
       <div class="features">
-        <div class="card">
-          <h2>Feature 1</h2>
-          <p>Description of Feature 1</p>
+        <div class="card d-flex flex-column align-items-center">
+          <Icon class="my-4" icon="fluent-mdl2:task-manager-mirrored" color="darkorchid" width="40" height="40"/>
+          <h3 class="mb-3">Class Management</h3>
+          <p class="mb-4">
+            This feature would allow administrators and teachers to manage
+            classes, including adding or removing students, updating student
+            information, and assigning teachers to classes.
+          </p>
         </div>
-        <div class="card">
-          <h2>Feature 2</h2>
-          <p>Description of Feature 2</p>
+        <div class="card d-flex flex-column align-items-center">
+          <Icon class="my-4" icon="fluent-mdl2:diet-plan-notebook" color="darkorchid" width="40" height="40" />
+          <h3 class="mb-3">Activity Planning</h3>
+          <p class="mb-4">
+            This feature would allow teachers to create and schedule activities
+            for their classes, so that there will be no static activities for
+            all of the year.
+          </p>
         </div>
-        <div class="card">
-          <h2>Feature 3</h2>
-          <p>Description of Feature 3</p>
+        <div class="card d-flex flex-column align-items-center">
+          <Icon class="my-4" icon="fluent-mdl2:issue-tracking" color="darkorchid" width="40" height="40" />
+          <h3 class="mb-3">Students Tracking</h3>
+          <p class="mb-4">
+            This feature would allow teachers to track student progress and
+            performance, using our notes system, the teachers will be capable to
+            give some comments to each children based on their progress.
+          </p>
         </div>
-        <div class="card">
-          <h2>Feature 4</h2>
-          <p>Description of Feature 4</p>
+        <div class="card d-flex flex-column align-items-center">
+          <Icon class="my-4" icon="ion:create-outline" color="darkorchid" width="40" height="40" />
+          <h3 class="mb-3">Accounts Creation</h3>
+          <p class="mb-4">
+            Using this feature, The administrator will be capable to give access
+            to every teacher or parent so that they can enter and do what they
+            can do in your kindergarten
+          </p>
         </div>
+      </div>
+      <div>
+        <button class="start btn rounded-0 text-white mt-5 px-4 fw-light">Start now</button>
       </div>
     </div>
   </section>
@@ -115,25 +144,44 @@ img {
   font-size: 0.9rem;
 }
 .why-us {
-  height: 100vh;
+  min-height: 100vh;
 }
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
 }
-
 .card {
-  background-color: #fff;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 !important;
+  background-color: rgb(245, 238, 238);
+}
+.card h3 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.card p {
+  font-size: 0.7rem;
+  font-weight: lighter;
+}
+.why-us h2 {
+  font-size: 2.5rem;
+}
+.start {
+  background-color: DarkOrchid;
+  transition: .5s ease-in-out;
+}
+.start:hover {
+  background-color: rgb(170, 0, 255);
+}
+.why-choose-us {
+  font-weight: lighter;
+  color: rgb(177, 174, 174);
 }
 @media (max-width: 1000px) {
   .features {
