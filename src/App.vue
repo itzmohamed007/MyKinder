@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg fixed-top bg-white" id="mainNav">
     <div class="container px-4 px-lg-5">
       <span class="navbar-brand fw-bold">MyKinder</span>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"

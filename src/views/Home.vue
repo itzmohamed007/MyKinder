@@ -42,7 +42,7 @@ import { Icon } from "@iconify/vue";
     </div>
   </section>
   <section class="overview container d-flex gap-5">
-    <div class="text-start w-50 d-flex flex-column justify-content-center">
+    <div class="p-5 text-start w-50 d-flex flex-column justify-content-center">
       <h2 class="fw-bold mb-4">OverView</h2>
       <p class="fw-light">
         Our platform is designed to help administrators managing their school in
@@ -56,7 +56,9 @@ import { Icon } from "@iconify/vue";
       <img src="../assets/overview.png" alt="" />
     </div>
   </section>
-  <section class="why-us container-fluid d-flex flex-column justify-content-center bg-black">
+  <section
+    class="why-us container-fluid d-flex flex-column justify-content-center bg-black"
+  >
     <div class="text-white">
       <h2 class="mt-5">Why Choose Us?</h2>
       <p class="why-choose-us mb-5">
@@ -67,7 +69,13 @@ import { Icon } from "@iconify/vue";
     <div class="container">
       <div class="features">
         <div class="card d-flex flex-column align-items-center">
-          <Icon class="my-4" icon="fluent-mdl2:task-manager-mirrored" color="darkorchid" width="40" height="40"/>
+          <Icon
+            class="my-4"
+            icon="fluent-mdl2:task-manager-mirrored"
+            color="darkorchid"
+            width="40"
+            height="40"
+          />
           <h3 class="mb-3">Class Management</h3>
           <p class="mb-4">
             This feature would allow administrators and teachers to manage
@@ -76,7 +84,13 @@ import { Icon } from "@iconify/vue";
           </p>
         </div>
         <div class="card d-flex flex-column align-items-center">
-          <Icon class="my-4" icon="fluent-mdl2:diet-plan-notebook" color="darkorchid" width="40" height="40" />
+          <Icon
+            class="my-4"
+            icon="fluent-mdl2:diet-plan-notebook"
+            color="darkorchid"
+            width="40"
+            height="40"
+          />
           <h3 class="mb-3">Activity Planning</h3>
           <p class="mb-4">
             This feature would allow teachers to create and schedule activities
@@ -85,7 +99,13 @@ import { Icon } from "@iconify/vue";
           </p>
         </div>
         <div class="card d-flex flex-column align-items-center">
-          <Icon class="my-4" icon="fluent-mdl2:issue-tracking" color="darkorchid" width="40" height="40" />
+          <Icon
+            class="my-4"
+            icon="fluent-mdl2:issue-tracking"
+            color="darkorchid"
+            width="40"
+            height="40"
+          />
           <h3 class="mb-3">Students Tracking</h3>
           <p class="mb-4">
             This feature would allow teachers to track student progress and
@@ -94,7 +114,13 @@ import { Icon } from "@iconify/vue";
           </p>
         </div>
         <div class="card d-flex flex-column align-items-center">
-          <Icon class="my-4" icon="ion:create-outline" color="darkorchid" width="40" height="40" />
+          <Icon
+            class="my-4"
+            icon="ion:create-outline"
+            color="darkorchid"
+            width="40"
+            height="40"
+          />
           <h3 class="mb-3">Accounts Creation</h3>
           <p class="mb-4">
             Using this feature, The administrator will be capable to give access
@@ -104,13 +130,96 @@ import { Icon } from "@iconify/vue";
         </div>
       </div>
       <div>
-        <button class="start btn rounded-0 text-white mt-5 px-4 fw-light">Start now</button>
+        <button class="start btn rounded-0 text-white mt-5 px-4 fw-light">
+          Start now
+        </button>
       </div>
     </div>
   </section>
+  <section
+    class="feedback w-75 container d-flex flex-column align-items-center justify-content-center"
+  >
+    <h3 class="fw-bold">Client Feedback</h3>
+    <p class="fw-light mb-5">
+      Here is a unit of one of our clients' feedback about the experience in our
+      website
+    </p>
+    <div class="user-feedback d-flex gap-5 mt-3">
+      <div class="w-50 p-3">
+        <h3 class="fw-bold text-start">
+          "School Managing Has Never Been Easier Before!"
+        </h3>
+      </div>
+      <div
+        class="w-50 d-flex flex-column align-items-center justify-content-center"
+      >
+        <p class="text-start fw-bold">
+          I was suffering from exausting work every single day managing the
+          whole school, but no anymore!
+        </p>
+        <div
+          class="d-flex align-self-start mt-3 justify-content-center align-items-center"
+        >
+          <img src="../assets/director.png" alt="" />
+          <div class="administrator ms-3">
+            <h4 class="fw-bold fs-6 text-start">Mohamed Moustaghfir</h4>
+            <p class="">Champions Kindergartens Director</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="container p-5  mb-5">
+    <div class="text-start">
+      <h4 class="footer-title fs-2 fw-bold mb-4">MyKinder</h4>
+      <p class="fw-light mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos consequatur tempore 
+        aspernatur aliquam fuga iste!
+      </p>
+      <div class="d-flex gap-2 mb-4">
+        <Icon icon="ic:baseline-facebook" width="35" color="darkorchid"/>
+        <Icon icon="ri:instagram-fill" width="35" color="darkorchid"/>
+        <Icon icon="carbon:logo-linkedin" width="35" color="darkorchid"/>
+        <Icon icon="ant-design:twitter-square-filled" width="35" color="darkorchid"/>
+      </div>
+    </div>
+    <div class="text-start ms-5">
+      <h4 class="fw-bold fs-5">Company</h4>
+      <p class="mb-0">lorem</p>
+      <p class="mb-0">epsum</p>
+      <p class="mb-0">dolor</p>
+    </div>
+    <div class="text-start ms-5">
+      <h4 class="fw-bold fs-5">Support</h4>
+      <p class="mb-0">lorem</p>
+      <p class="mb-0">epsum</p>
+      <p class="mb-0">dolor</p>
+      <p class="mb-0">sit amet</p>
+    </div>
+    <div class="text-start ms-5">
+      <h4 class="fw-bold fs-5">Support</h4>
+      <p class="mb-0">New York, NY 10012, US</p>
+      <p class="mb-0">info@gmail.com</p>
+      <p class="mb-0">+ 01 234 567 88</p>
+      <p class="mb-0">+ 02 345 678 99</p>
+    </div>
+  </footer>
 </template>
 
 <style scoped>
+footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 50vh;
+}
+.footer-title {
+  color: darkorchid ;
+}
+footer h4 {
+  color: darkorchid;
+}
+footer p {
+  font-weight: lighter!important;
+}
 .hero {
   height: 100vh;
   background-color: rgb(255, 255, 255);
@@ -174,7 +283,7 @@ img {
 }
 .start {
   background-color: DarkOrchid;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 .start:hover {
   background-color: rgb(170, 0, 255);
@@ -182,6 +291,25 @@ img {
 .why-choose-us {
   font-weight: lighter;
   color: rgb(177, 174, 174);
+}
+.feedback {
+  height: 100vh;
+}
+.feedback h3 {
+  font-size: 2rem;
+}
+.user-feedback {
+  padding: 4rem;
+  background-color: rgb(245, 227, 255);
+}
+.feedback img {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+.administrator p {
+  font-size: 0.8rem;
+  text-align: start;
 }
 @media (max-width: 1000px) {
   .features {
