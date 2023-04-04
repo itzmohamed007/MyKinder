@@ -1,18 +1,21 @@
-<script setup>
+<script>
 import { Icon } from "@iconify/vue";
+export default {
+  components: {
+    Icon
+  }
+}
 </script>
 
 <template>
-  <section class="hero container d-flex">
-    <div
-      class="h-100 w-50 mx-5 d-flex flex-column justify-content-center text-start text-black"
-    >
+  <section class="hero container d-flex align-items-center justify-content-center">
+    <div class="hero-content h-100 w-50 mx-5 d-flex flex-column justify-content-center text-start text-black">
       <h1 class="fw-bold mb-3">Making Kindergarten Management More Human!</h1>
       <p class="fs-6 fw-light">
         Our system is designed to help administrators and professors to manage
         children's education and development ...
       </p>
-      <div class="mb-4">
+      <div class="mini-features mb-4 d-flex flex-column">
         <div class="d-flex align-items-center">
           <Icon
             icon="material-symbols:check-circle-outline-rounded"
@@ -32,17 +35,17 @@ import { Icon } from "@iconify/vue";
           <p class="ms-2 mb-0 fw-bold">simplified tasks management</p>
         </div>
       </div>
-      <div class="d-flex gap-2">
+      <div class="buttons d-flex gap-2">
         <button class="login btn px-5 py-2 text-white">Login</button>
         <button class="explore btn px-5 py-2">Explore</button>
       </div>
     </div>
-    <div class="align-self-center me-5">
-      <img src="../assets/hero.png" alt="" />
+    <div class="hero-img align-self-center me-5">
+      <img src="../assets/images/hero.png" alt="" />
     </div>
   </section>
   <section class="overview container d-flex gap-5">
-    <div class="p-5 text-start w-50 d-flex flex-column justify-content-center">
+    <div class="overview-text p-5 text-start w-50 d-flex flex-column justify-content-center">
       <h2 class="fw-bold mb-4">OverView</h2>
       <p class="fw-light">
         Our platform is designed to help administrators managing their school in
@@ -52,13 +55,11 @@ import { Icon } from "@iconify/vue";
         children notes added by teachers.
       </p>
     </div>
-    <div class="w-50 align-self-center">
-      <img src="../assets/overview.png" alt="" />
+    <div class="image-container w-50 align-self-center">
+      <img src="../assets/images/overview.png" alt="" />
     </div>
   </section>
-  <section
-    class="why-us container-fluid d-flex flex-column justify-content-center bg-black"
-  >
+  <section class="why-us container-fluid d-flex flex-column justify-content-center bg-black">
     <div class="text-white">
       <h2 class="mt-5">Why Choose Us?</h2>
       <p class="why-choose-us mb-5">
@@ -130,37 +131,33 @@ import { Icon } from "@iconify/vue";
         </div>
       </div>
       <div>
-        <button class="start btn rounded-0 text-white mt-5 px-4 fw-light">
+        <button class="start btn rounded-0 text-white mt-5 px-4 fw-light mb-5">
           Start now
         </button>
       </div>
     </div>
   </section>
-  <section
-    class="feedback w-75 container d-flex flex-column align-items-center justify-content-center"
-  >
+  <section class="feedback w-75 container d-flex flex-column align-items-center justify-content-center">
     <h3 class="fw-bold">Client Feedback</h3>
     <p class="fw-light mb-5">
       Here is a unit of one of our clients' feedback about the experience in our
       website
     </p>
     <div class="user-feedback d-flex gap-5 mt-3">
-      <div class="w-50 p-3">
+      <div class="big-quot w-50 p-3">
         <h3 class="fw-bold text-start">
           "School Managing Has Never Been Easier Before!"
         </h3>
       </div>
-      <div
-        class="w-50 d-flex flex-column align-items-center justify-content-center"
-      >
+      <div class="small-quot w-50 d-flex flex-column align-items-center justify-content-center">
         <p class="text-start fw-bold">
           I was suffering from exausting work every single day managing the
           whole school, but no anymore!
         </p>
         <div
-          class="d-flex align-self-start mt-3 justify-content-center align-items-center"
+          class="quot-teller d-flex align-self-start mt-3 justify-content-center align-items-center"
         >
-          <img src="../assets/director.png" alt="" />
+          <img src="../assets/images/director.png" alt="" />
           <div class="administrator ms-3">
             <h4 class="fw-bold fs-6 text-start">Mohamed Moustaghfir</h4>
             <p class="">Champions Kindergartens Director</p>
@@ -209,7 +206,7 @@ import { Icon } from "@iconify/vue";
 footer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  height: 50vh;
+  min-height: 50vh;
 }
 .footer-title {
   color: darkorchid ;
@@ -221,7 +218,7 @@ footer p {
   font-weight: lighter!important;
 }
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgb(255, 255, 255);
 }
 .hero h1 {
@@ -244,7 +241,7 @@ img {
   width: 450px;
 }
 .overview {
-  height: 100vh;
+  min-height: 100vh;
 }
 .overview h2 {
   font-size: 3rem !important;
@@ -293,7 +290,7 @@ img {
   color: rgb(177, 174, 174);
 }
 .feedback {
-  height: 100vh;
+  min-height: 100vh;
 }
 .feedback h3 {
   font-size: 2rem;
@@ -312,13 +309,106 @@ img {
   text-align: start;
 }
 @media (max-width: 1000px) {
+  .hero-img {
+    margin: 0!important;
+  }
+  .hero {
+    flex-wrap: wrap;
+  }
+  .user-feedback {
+    flex-wrap: wrap;
+  }
+  .overview {
+    flex-wrap: wrap;
+    gap: 0!important;
+    height: 50vh!important;
+    margin: 0 0!important;
+    align-items: center!important;
+    justify-content: center!important;
+    min-height: 50rem;
+  }
   .features {
     grid-template-columns: repeat(2, 1fr);
   }
+  footer {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+  }
 }
 @media (max-width: 765px) {
+  .big-quot {
+    width: 100%!important;
+  }
+  .big-quot h3 {
+    text-align: center!important;
+    font-size: 1.7rem!important;
+  }
+  .small-quot {
+    width: 100%!important;
+    text-align: center!important;
+  }
+  .quot-teller {
+    align-items: center!important;
+    justify-content: center!important;
+  }
+  .feedback {
+    padding: 2rem!important;
+  }
+  .image-container {
+    width: 100%!important;
+  }
+  /* .overview {
+    gap: 0!important;
+    height: 50vh!important;
+    margin: 0 0!important;
+    align-items: center!important;
+    justify-content: center!important;
+  } */
+  .overview-text {
+    width: 100%!important;
+    text-align: center!important;
+  }
+  .mini-features {
+    justify-content: center!important;
+    align-items: center!important;
+  }
+  .buttons {
+    justify-content: center;
+  }
+  .hero h1 {
+    font-size: 2.3rem!important;
+  }
+  .hero-content {
+    height: 90vh!important;
+    text-align: center!important;
+    gap: 30px!important;
+    margin: 0 1rem!important;
+  }
+  .hero {
+    align-items: center!important;
+    justify-content: center!important;
+    text-align: center!important;
+    margin-top: 4rem!important;
+  }
+  .hero > div {
+    width: 100%!important;
+  }
+  img {
+    width: 380px;
+    /* display: none; */
+  }
   .features {
     grid-template-columns: repeat(1, 1fr);
+  }
+  footer {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    justify-content: start;
+    margin: 0 0;
+    padding: 1!important;
+  }
+  footer > div {
+    margin: 0!important;
   }
 }
 </style>

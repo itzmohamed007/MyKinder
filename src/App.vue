@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top bg-white" id="mainNav">
+  <!-- <nav class="navbar navbar-expand-lg fixed-top bg-white" id="mainNav">
     <div class="container px-4 px-lg-5">
       <span class="navbar-brand fw-bold">MyKinder</span>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
@@ -9,14 +9,14 @@
       </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
           <ul class="navbar-nav fw-bold align-items-center">
-            <router-link class="nav-item rounded" to="/home">Home</router-link>
+            <router-link class="nav-item rounded" to="/">Home</router-link>
             <router-link class="nav-item rounded" to="/">About</router-link>
             <router-link class="nav-item rounded" to="/">Contact</router-link>
             <router-link class="login nav-item rounded" to="/login">Login</router-link>
           </ul>
         </div>
       </div>
-  </nav>
+  </nav> -->
   <router-view/>
 </template>
 
@@ -40,7 +40,7 @@ nav ul a {
   transition: .3s ease-in-out;
 }
 nav ul a:hover {
-  color: white; /* Add this line to change the text color on hover */
+  color: white;
 }
 nav ul .login {
   border: 3px solid black;

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Connection from '../views/Connection'
-import Home from '../views/Home'
+import Connection from '../views/Connection.vue'
+import Home from '../views/Home.vue'
+import Admin from '../views/Admin.vue'
 
 const routes = [
   {
@@ -12,11 +13,16 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: Admin
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes
 })
 

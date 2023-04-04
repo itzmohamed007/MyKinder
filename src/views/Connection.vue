@@ -1,5 +1,10 @@
-<script setup>
+<script>
 import { Icon } from "@iconify/vue";
+export default {
+  components: {
+    Icon
+  }
+}
 </script>
 
 <template>
@@ -30,7 +35,7 @@ import { Icon } from "@iconify/vue";
 .hero {
   padding: 5rem;
   height: 100vh;
-  background: url("../assets/background.png");
+  background: url("../assets/images/background.svg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -65,7 +70,7 @@ form {
 }
 .inner-container {
   background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(4px);
   margin: 0 auto;
   width: 100%;
   border: 2px solid white;
