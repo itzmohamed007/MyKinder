@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Connection from '../views/Connection.vue'
 import Home from '../views/Home.vue'
-import Admin from '../views/Admin.vue'
+import AdminDashboard from '../views/admin/Dashboard.vue'
+import NewClass from '../views/admin/NewClass.vue'
 
 const routes = [
   {
@@ -15,9 +16,14 @@ const routes = [
     component: Home
   },
   {
-    path: '/admin',
+    path: '/admin/dashboard',
     name: 'admin',
-    component: Admin
+    component: AdminDashboard
+  },
+  {
+    path: '/admin/class/create',
+    name: 'class',
+    component: NewClass
   }
 ]
 

@@ -41,9 +41,6 @@
 </template>
 
 <style scoped>
-li:active {
-  background-color: rgb(201, 190, 255);
-}
 .selected {
   background-color: rgb(201, 190, 255);
 }
@@ -51,15 +48,15 @@ li:active {
 
 <script>
 import { Icon }  from "@iconify/vue"
-import Teachers from '../components/Teachers.vue'
-import Students from '../components/Students.vue'
-import Classrooms from '../components/Classrooms.vue'
-import Parents from '../components/Parents.vue'
+import Teachers from '../../components/Teachers.vue'
+import Students from '../../components/Students.vue'
+import Classrooms from '../../components/Classrooms.vue'
+import Parents from '../../components/Parents.vue'
 
 export default {
   data() {
     return {
-      selectedTable: 'teachers'
+      selectedTable: 'classes'
     }
   },
   components: {
