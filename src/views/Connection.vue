@@ -1,87 +1,16 @@
-<script>
-import { Icon } from "@iconify/vue";
-export default {
-  components: {
-    Icon
-  }
-}
-</script>
-
 <template>
-  <section class="hero d-grid align-items-center">
-    <div class="container">
-      <div class="inner-container rounded-4 py-5">
-        <h1 class="fs-2 fw-bold mb-5">Login</h1>
-        <form class="w-75">
-          <div class="d-flex align-items-between">
-            <input class="border-0 " type="email" placeholder="Email">
-            <Icon class="my-auto" icon="material-symbols:mail-rounded" color="black" width="30" height="30"/>
+  <section class="bg-login-page h-screen flex flex-col items-center justify-center p-5">
+      <div class="w-full custom:w-1/2 lg:w-1/3 bg-white rounded-lg p-4 shadow-2xl">
+          <h1 class="text-login-page gap-20  mb-4 text-3xl font-normal">Login</h1>
+          <div class="mt-12 md:mt-4">
+              <input type="email" placeholder="Email" class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-3 pb-3">
           </div>
-          <hr class="w-100 rounded mb-5 mt-0">
-          <div class="d-flex align-items-between">
-            <input class="border-0 " type="password" placeholder="Password">
-            <Icon class="my-auto" icon="material-symbols:lock" color="black" width="30" height="30"/>
+          <div class="mt-10  md:mt-8">
+              <input type="password" placeholder="Password" class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-3 pb-3">
           </div>
-          <hr class="w-100 rounded mb-5 mt-0">
-          <button type="button" class="btn bg-black py-2 fs-5 text-white w-100">Login</button>
-        </form>
+          <div class="mt-10  md:mt-8">
+              <button type="button" class="w-100 bg-gradient-to-r from-fuchsia-400 to-purple-500 text-white shadow-md pt-3 pb-3 rounded-full">Login</button>
+          </div>
       </div>
-    </div>
   </section>
-  
 </template>
-
-<style scoped>
-.hero {
-  padding: 5rem;
-  height: 100vh;
-  background: url("../assets/images/background.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-input::placeholder {
-  color: black;
-}
-input:focus {
-  outline: none;
-  border: none;
-}
-input {
-  width: 100%;
-  padding: 0.375rem 0;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  background-color: transparent;
-  transition: .5s ease-in-out;
-}
-hr {
-  height: 2px;
-  border: none;
-  background-color: black;
-  opacity: 1;
-}
-form {
-  margin-inline: auto;
-}
-.container {
-  width: 30%;
-}
-.inner-container {
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(4px);
-  margin: 0 auto;
-  width: 100%;
-  border: 2px solid white;
-}
-@media (max-width: 765px) {
-  .hero {
-    padding: 0;
-  }
-  .container {
-  width: 90%;
-  }
-}
-
-</style>
