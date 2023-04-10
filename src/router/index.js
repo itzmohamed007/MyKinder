@@ -1,13 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Connection from '../views/Connection.vue'
 import Home from '../views/Home.vue'
-import AdminDashboard from '../views/admin/Dashboard.vue'
-import AddClass from '../views/admin/classes/AddClass.vue'
-import UpdateClass from '../views/admin/classes/UpdateClass.vue'
+import AdminDashboard from '../views/admin/AdminDashboard.vue'
+import AddClass from '../views/admin/classrooms/AddClass.vue'
+import UpdateClass from '../views/admin/classrooms/UpdateClass.vue'
 import AddStudent from '../views/admin/students/AddStudent.vue'
 import UpdateStudent from '../views/admin/students/UpdateStudent.vue'
 import AddTeacher from '../views/admin/teachers/AddTeacher.vue'
 import UpdateTeacher from '../views/admin/teachers/UpdateTeacher.vue'
+import AddParent from '../views/admin/parents/AddParent.vue'
+import UpdateParent from '../views/admin/parents/UpdateParent.vue'
+import TeacherDashboard from '../views/teacher/TeacherDashboard.vue'
+import ParentDashboard from '../views/parent/ParentDashboard.vue'
 
 const routes = [
   {
@@ -55,6 +59,26 @@ const routes = [
     name: 'TeacherUpdate',
     component: UpdateTeacher
   },
+  {
+    path: '/admin/parent/create',
+    name: 'ParentCreate',
+    component: AddParent
+  },
+  {
+    path: '/admin/parent/update',
+    name: 'ParentUpdate',
+    component: UpdateParent
+  },
+  {
+    path: '/teacher/dashboard',
+    name: 'TeacherDashboard',
+    component: TeacherDashboard
+  },
+  {
+    path: '/parent/dashboard',
+    name: 'ParentDashboard',
+    component: ParentDashboard
+  }
 ]
 
 const router = createRouter({

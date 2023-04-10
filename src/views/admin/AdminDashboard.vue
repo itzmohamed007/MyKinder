@@ -1,5 +1,4 @@
 <template>
-  <img src="https://unsplash.com/fr/photos/ZHvM3XIOHoE" alt="">
   <section class="flex">
     <div class="flex flex-col fixed right-0 text-white bg-blue-950 h-screen w-[50px] lg:w-[250px] py-4 px-0 transition-all delay-100">
       <div class="mb-3">
