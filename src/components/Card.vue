@@ -1,5 +1,5 @@
 <template>
-    <div class="text-start w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg shadow-lg">
+    <div class="text-start w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg border-violet-600 border-2">
         <div class="flex justify-center -mt-16 md:justify-end">
             <img class="object-cover w-20 h-20 border-2 border-violet-600 rounded-full"
                 alt="Testimonial avatar"
@@ -11,11 +11,7 @@
             Quae dolores deserunt ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a
             veritatis pariatur minus consequuntur!</p>
         <div class="flex items-center">
-            <button class=" text-sm bg-violet-500 p-2 mx-auto rounded-md text-white">Comment</button>
+            <button class="text-xs bg-violet-500 p-2 mx-auto rounded-md text-white">Comment</button>
         </div>
     </div>
 </template>
-  
-<script>
-
-</script>

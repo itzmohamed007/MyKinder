@@ -6,7 +6,7 @@
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
         <button type="button"
-          class="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-950 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-admin-hover focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto cursor-pointer">Add
+          class="inline-flex items-center justify-center rounded-md border border-transparent bg-violet-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto cursor-pointer">Add
           classroom</button>
       </div>
     </div>
@@ -28,15 +28,15 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                <tr v-for="classroom in classrooms" :key="classroom.email">
+                <tr v-for="classroom in classrooms" :key="classroom.id">
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     <div class="text-gray-900">{{ classroom.name }}</div>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <div class="text-gray-900">{{ classroom.count }}</div>
+                    <div class="text-gray-900">{{ classroom.students.length }}</div>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <div class="text-gray-900">{{ classroom.teacher }}</div>
+                    <div class="text-gray-900">{{ classroom.teacher.name }}</div>
                   </td>
                   <td class="flex justify-start py-4 px-3 text-right text-sm font-medium sm:pr-6 align-middle">
                     <Icon icon="tabler:edit" width="30" class="mx-2 cursor-pointer"/>
@@ -53,25 +53,10 @@
 </template>
 
 <script>
-const classrooms = [
-  {
-    name: 'Margarette Hamilton',
-    count: '22',
-    teacher: 'Abdeladim Abid',
-  },
-  {
-    name: 'Alan Turing',
-    count: '19',
-    teacher: 'Null',
-  },
-]
-
 import { Icon } from '@iconify/vue'
 export default {
-  setup() {
-    return {
-      classrooms,
-    }
+ props: {
+  classrooms: Array
   },
   components: {
     Icon

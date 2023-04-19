@@ -6,7 +6,7 @@
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
         <button type="button"
-          class="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-950 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-admin-hover focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto cursor-pointer">Add
+          class="inline-flex items-center justify-center rounded-md border border-transparent bg-violet-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto cursor-pointer">Add
           parent</button>
       </div>
     </div>
@@ -21,22 +21,22 @@
                   </th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Child
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Phone
                   </th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Operations
                   </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                <tr v-for="parent in parents" :key="parent.id">
+                <tr v-for="sibling in siblings" :key="sibling.id">
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <div class="text-gray-900">{{ parent.name }}</div>
+                    <div class="text-gray-900">{{ sibling.name }}</div>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <div class="text-gray-900">{{ parent.email }}</div>
+                    <div class="text-gray-900">{{ sibling.email }}</div>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <div class="text-gray-900">{{ parent.child }}</div>
+                    <div class="text-gray-900">{{ sibling.phone }}</div>
                   </td>
                   <td class="flex justify-start py-4 px-3 text-right text-sm font-medium sm:pr-6 align-middle">
                     <Icon icon="tabler:edit" width="30" class="mx-2 cursor-pointer"/>
@@ -53,25 +53,10 @@
 </template>
 
 <script>
-const parents = [
-  {
-    name: 'Abdelaziz Bourra',
-    email: 'abdeaziz@gmail.com',
-    child: 'Ayoub Iboban',
-  },
-  {
-    name: 'Ahmed Moustaghfir',
-    email: 'ahmed@gmail.com',
-    child: 'najoua behaj',
-  },
-]
-
 import { Icon } from '@iconify/vue'
 export default {
-  setup() {
-    return {
-      parents,
-    }
+  props: {
+    siblings: Array
   },
   components: {
     Icon

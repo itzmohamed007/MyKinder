@@ -1,12 +1,3 @@
-<script>
-import { Icon } from "@iconify/vue";
-export default {
-  components: {
-    Icon
-  }
-}
-</script>
-
 <template>
   <section class="hero container d-flex align-items-center justify-content-center">
     <div class="hero-content h-100 w-50 mx-5 d-flex flex-column justify-content-center text-start text-black">
@@ -26,7 +17,7 @@ export default {
         </div>
       </div>
       <div class="buttons d-flex gap-2">
-        <button class="login btn px-5 py-2 text-white">Login</button>
+        <button class="login btn px-5 py-2 text-white" @click="login()">Login</button>
         <button class="explore btn px-5 py-2">Explore</button>
       </div>
     </div>
@@ -165,6 +156,21 @@ export default {
     </div>
   </footer>
 </template>
+
+<script>
+import router from "../router";
+import { Icon } from "@iconify/vue";
+export default {
+  components: {
+    Icon
+  },
+  methods: {
+    login() {
+      router.push('/login')
+    }
+  }
+}
+</script>
 
 <style scoped>
 footer {

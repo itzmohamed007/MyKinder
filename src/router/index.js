@@ -11,7 +11,7 @@ import UpdateTeacher from '../views/admin/teachers/UpdateTeacher.vue'
 import AddParent from '../views/admin/parents/AddParent.vue'
 import UpdateParent from '../views/admin/parents/UpdateParent.vue'
 import TeacherDashboard from '../views/teacher/TeacherDashboard.vue'
-import ParentDashboard from '../views/parent/ParentDashboard.vue'
+import SiblingDashboard from '../views/sibling/SiblingDashboard.vue'
 
 const routes = [
   {
@@ -75,9 +75,9 @@ const routes = [
     component: TeacherDashboard
   },
   {
-    path: '/parent/dashboard',
-    name: 'ParentDashboard',
-    component: ParentDashboard
+    path: '/sibling/dashboard',
+    name: 'SiblingDashboard',
+    component: SiblingDashboard
   }
 ]
 
