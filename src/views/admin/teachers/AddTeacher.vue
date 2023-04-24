@@ -4,17 +4,17 @@
             <form>
                 <h1 class="text-login-page gap-20  mb-4 text-3xl font-normal">Add Teacher</h1>
                 <div class="mt-12 md:mt-4">
-                    <p class=" text-white bg-red-600 rounded-sm w-100">{{ name_error }}</p>
+                    <p class=" text-white bg-red-600 rounded-sm w-100">{{ errors.name }}</p>
                     <input type="text" placeholder="Teacher Name" v-model="teacher.name"
                         class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
                 </div>
                 <div class="mt-10  md:mt-8">
-                    <p class=" text-white bg-red-600 rounded-sm w-100">{{ email_error }}</p>
+                    <p class=" text-white bg-red-600 rounded-sm w-100">{{ errors.email }}</p>
                     <input type="email" placeholder="Teacher Email" v-model="teacher.email"
                         class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
                 </div>
                 <div class="mt-10  md:mt-8">
-                    <p class=" text-white bg-red-600 rounded-sm w-100">{{ phone_error }}</p>
+                    <p class=" text-white bg-red-600 rounded-sm w-100">{{ errors.phone }}</p>
                     <input type="number" placeholder="Teacher Phone" v-model="teacher.phone"
                         class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
                 </div>
@@ -22,6 +22,9 @@
                     <button type="button" @click="submitHandle()"
                         class="w-100 bg-gradient-to-r from-fuchsia-400 to-purple-500 text-white shadow-md pt-2 pb-2 rounded-full">Create</button>
                 </div>
+                <a href="../../admin/dashboard" class=" decoration-transparent">
+                    <p class="w-100 text-start mt-2">Return To Dashboard</p>
+                </a>
             </form>
         </div>
     </section>
@@ -29,7 +32,7 @@
 
 <script>
 import axios from 'axios'
-import router from '@/router'
+import router from '@/router/router'
 export default {
     data() {
         return {
@@ -38,48 +41,78 @@ export default {
                 email: '',
                 phone: ''
             },
-            name_error: '',
-            email_error: '',
-            phone_error: '',
-            unauthorized: ''
+            errors: {
+                name: '',
+                email: '',
+                phone: ''
+            },
+            token: '',
+            headers: ''
         }
     },
     methods: {
+        successAlert() {
+            this.$swal({
+                title: 'Success',
+                text: 'Teacher account created successfully',
+                icon: 'success',
+                confirmButtonText: 'ok'
+            });
+        },
+        authenticationAlert() {
+            this.$swal({
+                title: 'Error',
+                text: 'You Are Not Authenticated',
+                icon: 'warning',
+                confirmButtonText: 'Login'
+            });
+        },
+        authorizationAlert() {
+            this.$swal({
+                title: 'Error',
+                text: 'You Are Not Allowed To Access This Page',
+                icon: 'error',
+                confirmButtonText: 'Connect'
+            });
+        },
         async submitHandle() {
-            const token = localStorage.getItem('token')
-            if (token == null) {
-                alert('You Are Not Authenticated')
+            if (this.token == null) {
+                this.authenticationAlert()
                 router.push('/login')
             }
-            let headers = { 'Authorization': `Bearer ${token}` }
             try {
-                const res = await axios.post('http://127.0.0.1:8000/api/teachers', this.teacher, { headers })
-                console.log(res)
+                await axios.post('http://127.0.0.1:8000/api/teachers', this.teacher, { headers: this.headers })
+                this.successAlert()
+                router.push('/admin/dashboard')
             } catch (e) {
                 console.log(e)
                 if (e.response.status == 422) {
                     if (e.response.data.errors.hasOwnProperty('name')) {
-                        this.name_error = e.response.data.errors.name[0]
+                        this.errors.name = e.response.data.errors.name[0]
                     } else {
-                        this.name_error = ''
+                        this.errors.name = ''
                     }
                     if (e.response.data.errors.hasOwnProperty('email')) {
-                        this.email_error = e.response.data.errors.email[0]
+                        this.errors.email = e.response.data.errors.email[0]
                     } else {
-                        this.email_error = ''
+                        this.errors.email = ''
                     }
                     if (e.response.data.errors.hasOwnProperty('phone')) {
-                        this.phone_error = e.response.data.errors.phone[0]
+                        this.errors.phone = e.response.data.errors.phone[0]
                     } else {
-                        this.phone_error = ''
+                        this.errors.phone = ''
                     }
-                } else if(e.response.status == 403) {
-                    alert('You Are Unauthorized To Access This Page, You Have To Re-Login')
+                } else if (e.response.status == 403) {
+                    this.authorizationAlert()
                     localStorage.removeItem('token')
                     router.push('/login')
                 }
             }
         },
+    },
+    mounted() {
+        this.token = localStorage.getItem('token')
+        this.headers = { Authorization: `Bearer ${this.token}` }
     }
 }
 </script>

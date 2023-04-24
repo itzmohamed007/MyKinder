@@ -26,8 +26,6 @@
                   </th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Class
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Teacher
-                  </th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Operations
                   </th>
                   <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -55,12 +53,9 @@
                       class="text-left inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">{{
                         student.classroom.name }}</span>
                   </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <div class="text-left text-gray-900">{{ student.teacher.name }}</div>
-                  </td>
                   <td class="flex py-4 px-3 text-right text-sm font-medium sm:pr-6 align-middle">
-                    <Icon icon="tabler:edit" width="30" class="mx-2 cursor-pointer" />
-                    <Icon icon="ic:round-delete-sweep" width="30" class="mx-2 cursor-pointer" />
+                    <Icon icon="tabler:edit" width="30" class="mx-2 cursor-pointer" @click="updateHandle(student.id)" />
+                    <Icon @click="deleteHandle(student.id)" icon="ic:round-delete-sweep" width="30" class="mx-2 cursor-pointer" />
                   </td>
                 </tr>
               </tbody>
@@ -74,12 +69,47 @@
  
 <script>
 import { Icon } from '@iconify/vue'
+import axios from 'axios'
+import router from '@/router/router'
+
 export default {
+  data() {
+    return {
+      token: '',
+      headers: ''
+    }
+  },
   props: {
     students: Array
   },
   components: {
     Icon
+  },
+  methods: {
+    successAlert() {
+      this.$swal({
+        title: 'Success',
+        text: 'Student deleted successfully!',
+        icon: 'success',
+        confirmButtonText: 'ok'
+      });
+    },
+    updateHandle(id) {
+      router.push('student/update/' + id)
+    },
+    deleteHandle(id) {
+      try {
+        axios.delete('http://127.0.0.1:8000/api/students/' + id, { headers: this.headers})
+        this.successAlert()
+        this.$emit('triger')
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  },
+  mounted() {
+    this.token = localStorage.getItem('token')
+    this.headers = { Authorization: `Bearer ${this.token}` }
   }
 }
 </script>

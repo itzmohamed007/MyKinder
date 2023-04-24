@@ -6,9 +6,10 @@
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
         <a href="/admin/teacher/create">
-          <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-violet-500 
-                px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-violet-600 focus:outline-none 
-                focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto cursor-pointer">Add teacher</button>
+          <button type="button"
+            class="inline-flex items-center justify-center rounded-md border border-transparent bg-violet-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto cursor-pointer">
+            Add teacher
+          </button>
         </a>
       </div>
     </div>
@@ -19,13 +20,17 @@
             <table class="text-left min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name
+                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                    Name
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    Email
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Phone
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    Phone
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Operations
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    Operations
                   </th>
                 </tr>
               </thead>
@@ -34,7 +39,9 @@
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                     <div class="flex items-center">
                       <div class="ml-4">
-                        <div class="font-medium text-gray-900">{{ teacher.name }}</div>
+                        <div class="font-medium text-gray-900">
+                          {{ teacher.name }}
+                        </div>
                       </div>
                     </div>
                   </td>
@@ -60,33 +67,51 @@
 </template>
 
 <script>
-import axios from 'axios'
-import router from '@/router'
-import { Icon } from '@iconify/vue'
+import axios from "axios";
+import { Icon } from "@iconify/vue";
+import router from "@/router/router";
 export default {
+  data() {
+    return {
+      token: '',
+      headers: ''
+    }
+  },
+  mounted() {
+    this.token = localStorage.getItem('token')
+    this.headers = { Authorization: `Bearer ${this.token}` }
+  },
   props: {
-    teachers: Array
+    teachers: Array,
   },
   components: {
-    Icon
+    Icon,
   },
   methods: {
-    async updateHandle(id) {
-      console.log('you want to update the tacher woth the id of ' + id)
+    successAlert() {
+      this.$swal({
+        title: 'Success',
+        text: 'Teacher account deleted successfully',
+        icon: 'success',
+        confirmButtonText: 'ok'
+      });
+    },
+    updateHandle(id) {
+      router.push('teacher/update/' + id)
     },
     async deleteHandle(id) {
-      console.log('you want to delete the tacher woth the id of ' + id)
-      let token = localStorage.getItem('token')
-      let headers = { 'Authorization': `Bearer ${token}` }
       try {
-        const res = await axios.delete('http://127.0.0.1:8000/api/teachers/' + id, { headers })
-        console.log(res)
-        this.$emit('delete') 
-        alert('Teacher Account Deleted Successfully')
+        console.log(this.headers)
+        let response = await axios.delete("http://127.0.0.1:8000/api/teachers/" + id,
+          { headers: this.headers },
+        );
+        console.log(response)
+        this.successAlert()
+        this.$emit("triger");
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

@@ -26,14 +26,18 @@
           <Icon class="mx-auto lg:mx-0 lg:w-1/4" icon="ri:parent-line" width="35px" />
           <p class="self-center m-0 font-light text-lg hidden lg:block w-3/4">Parents</p>
         </li>
+        <li class="cursor-pointer flex ps-0 py-2 lg:ps-4 lg:py-2 align-middle hover:bg-red-600" @click="logout()">
+          <Icon class="mx-auto lg:mx-0 lg:w-1/4" icon="material-symbols:logout" width="35px" color="white" />
+          <p class="self-center m-0 font-light text-lg hidden lg:block w-3/4">Logout</p>
+        </li>
       </ul>
     </div>
   </section>
   <section class="w-admin-resposive lg:w-admin-full-width">
-    <Teachers @delete="fetchClassrooms" v-if="selectedTable == 'teachers'" :teachers="teachers" />
-    <Students v-if="selectedTable == 'students'" :students="students" />
-    <Classrooms v-if="selectedTable == 'classes'" :classrooms="classrooms" />
-    <Parents v-if="selectedTable == 'parents'" :siblings="siblings" />
+    <Teachers @triger="fetch" v-if="selectedTable == 'teachers'" :teachers="teachers" />
+    <Students @triger="fetch" v-if="selectedTable == 'students'" :students="students" />
+    <Classrooms @triger="fetch" v-if="selectedTable == 'classes'" :classrooms="classrooms" />
+    <Parents @triger="fetch" v-if="selectedTable == 'parents'" :siblings="siblings" />
   </section>
 </template>
 
@@ -50,6 +54,7 @@ import Teachers from '../../components/Teachers.vue'
 import Students from '../../components/Students.vue'
 import Classrooms from '../../components/Classrooms.vue'
 import Parents from '../../components/Parents.vue'
+import router from '@/router/router'
 
 export default {
   data() {
@@ -59,6 +64,8 @@ export default {
       students: [],
       teachers: [],
       siblings: [],
+      token: '',
+      headers: ''
     }
   },
   components: {
@@ -69,27 +76,46 @@ export default {
     Parents
   },
   methods: {
+    logoutAlert() {
+      this.$swal({
+        title: 'Success',
+        text: 'Loged Out Successfully',
+        icon: 'success',
+        confirmButtonText: 'ok'
+      });
+    },
+    async logout() {
+      console.log('trying to logot')
+      console.log(this.headers)
+      const res = await axios.post('http://127.0.0.1:8000/api/logout', {}, { headers: this.headers })
+      console.log(res)
+      localStorage.removeItem('token')
+      localStorage.removeItem('role')
+      this.logoutAlert()
+      router.push('../../login')
+    },
     updateTable(option) {
       this.selectedTable = option
     },
-    async fetchClassrooms() {
-      let token = localStorage.getItem('token')
-      let headers = { 'Authorization': `Bearer ${token}` }
+    async fetch() {
       try {
-        await axios.get('http://127.0.0.1:8000/api/global', { headers })
-        .then((response) => {
-          this.classrooms = response.data.classrooms
-          this.students = response.data.students
-          this.teachers = response.data.teachers
-          this.siblings = response.data.siblings
-        })
-      } catch(e) {
+        await axios.get('http://127.0.0.1:8000/api/global', { headers: this.headers })
+          .then((response) => {
+            this.classrooms = response.data.classrooms
+            this.students = response.data.students
+            this.teachers = response.data.teachers
+            this.siblings = response.data.siblings
+            console.log(response.data.students)
+          })
+      } catch (e) {
         console.log(e)
       }
     }
   },
   async mounted() {
-    await this.fetchClassrooms()
+    this.token = localStorage.getItem('token')
+    this.headers = { Authorization: `Bearer ${this.token}` }
+    await this.fetch()
   }
 }
 </script>

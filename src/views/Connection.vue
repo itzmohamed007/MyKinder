@@ -25,7 +25,7 @@
 
 <script>
 import axios from 'axios'
-import router from '../router'
+import router from '@/router/router'
 export default {
     data() {
         return {
@@ -38,19 +38,41 @@ export default {
         }
     },
     methods: {
+        successAlert() {
+            this.$swal({
+                title: 'Success',
+                text: 'Loged In Successfully!',
+                icon: 'success',
+                confirmButtonText: 'ok'
+            });
+        },
+        loginAlert() {
+            this.$swal({
+                title: 'Wait',
+                text: 'You Are Already Loged In!',
+                icon: 'info',
+                confirmButtonText: 'ok'
+            });
+        },
         async HandelLogin() {
             try {
                 const res = await axios.post('http://127.0.0.1:8000/api/login', this.user)
                 this.auth_error = ''
+                this.successAlert()
                 localStorage.setItem('token', res.data.token)
+                localStorage.setItem('id', res.data.user.id)
+
                 switch (res.data.user.role) {
                     case 'admin':
+                        localStorage.setItem('role', 'admin')
                         router.push('../admin/dashboard')
                         break;
                     case 'teacher':
+                        localStorage.setItem('role', 'teacher')
                         router.push('../teacher/dashboard')
                         break;
                     case 'sibling':
+                        localStorage.setItem('role', 'sibling')
                         router.push('../sibling/dashboard')
                         break;
                 }
@@ -65,6 +87,23 @@ export default {
                         break;
                 }
 
+            }
+        }
+    },
+    mounted() {
+        if (localStorage.getItem('token')) {
+            this.loginAlert()
+            const role = localStorage.getItem('role')
+            switch (role) {
+                case 'admin':
+                    router.push('../admin/dashboard')
+                    break
+                case 'teacher':
+                    router.push('../teacher/dashboard')
+                    break
+                case 'sibling':
+                    router.push('../sibling/dashboard')
+                    break
             }
         }
     }

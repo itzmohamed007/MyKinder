@@ -1,17 +1,67 @@
 <template>
-    <div class="text-start w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg border-violet-600 border-2">
-        <div class="flex justify-center -mt-16 md:justify-end">
-            <img class="object-cover w-20 h-20 border-2 border-violet-600 rounded-full"
-                alt="Testimonial avatar"
-                src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=76&q=80">
-        </div>
-        <h2 class="mt-2 text-xl font-bold text-gray-800 md:mt-0">Mohamed Bourra</h2>
-        <p class="mt-2 text-md font-normal text-gray-600 md:mt-0">7 years</p>
-        <p class="mt-2 text-xs text-gray-400 font-thin">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Quae dolores deserunt ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a
-            veritatis pariatur minus consequuntur!</p>
-        <div class="flex items-center">
-            <button class="text-xs bg-violet-500 p-2 mx-auto rounded-md text-white">Comment</button>
-        </div>
+  <Status v-if="formV" @close="closeForm" />
+  <div class="text-start w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg border-violet-600 border-2"
+    v-for="student in filteredStudents" :key="student.id">
+    <div class="flex justify-center -mt-16 md:justify-end">
+      <img class="object-cover w-20 h-20 border-2 border-violet-600 rounded-full" :src="student.image_url">
     </div>
+    <p class="mt-2 text-md font-normal text-gray-800"><span class="font-bold">Name: </span>{{ student.name }}</p>
+    <p class="mt-0 text-md font-normal text-gray-800"><span class="font-bold">Age: </span>{{ student.age }}years</p>
+    <div class="mt-0 d-flex items-center">
+      <p class="mb-0 text-md font-normal text-gray-800"><span class="font-bold">Status: </span></p>
+      <Icon @click="updateHandle(student.id)" icon="tabler:edit" width="25" class="mx-2 cursor-pointer" />
+    </div>
+    <p class="mt-2 text-md font-normal text-gray-500 hide-scroll overflow-x-hidden overflow-y-scroll h-12">{{ student.status }}</p>
+  </div>
 </template>
+
+<script>
+import { Icon } from "@iconify/vue"
+import Status from '@/components/Status.vue'
+
+export default {
+  data() {
+    return {
+      filteredStudents: [],
+      formV: false
+    }
+  },
+  components: {
+    Icon,
+    Status
+  },
+  props: {
+    students: Array
+  },
+  mounted() {
+    console.log(this.students)
+  },
+  methods: {
+    updateHandle(id) {
+      this.formV = true
+      console.log('form opended')
+      console.log(this.formV)
+    },
+    closeForm() {
+      this.formV = false
+      console.log('form closed')
+      console.log(this.formV)
+    }
+  },
+  watch: {
+    students: {
+      handler(newVal) {
+        const teacher_id = localStorage.getItem('id')
+        this.filteredStudents = newVal.filter(student => student.classroom.teacher.id === parseInt(teacher_id))
+      },
+      immediate: true
+    }
+  }
+}
+</script>
+
+<style>
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+</style>

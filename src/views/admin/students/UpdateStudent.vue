@@ -3,21 +3,188 @@
         <div class="w-full custom:w-1/2 lg:w-1/3 bg-white rounded-lg p-4 shadow-2xl">
             <h1 class="text-login-page gap-20  mb-4 text-3xl font-normal">Update Student</h1>
             <div class="mt-12 md:mt-4">
-                <input type="text" placeholder="Student Name" class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
+                <p class=" text-white bg-red-600 rounded-sm w-100">{{ errors.name }}</p>
+                <input type="text" placeholder="Student Name" v-model="student.name"
+                    class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
             </div>
-            <div class="mt-10  md:mt-8">
-                <input type="text" placeholder="Student Age" class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
+            <div class="mt-10 md:mt-6">
+                <label class="block text-gray-400 text-start font-thin mb-1 ml-4">Student Image</label>
+                <p class=" text-white bg-red-600 rounded-sm w-100">{{ errors.image }}</p>
+                <input type="file" @change="onFileChange" class="block w-100 px-3 pt-2 pb-2 text-gray-400 font-thin bg-gradient-to-b from-gray-200 to-white rounded-full border-none file:bg-gradient-to-r file:from-fuchsia-400 file:to-purple-500 file:text-white file:text-sm file:px-4 file:py-2 file:border-none file:rounded-full placeholder-gray-400/70 
+                focus:border-blue-400 focus:outline-none" />
             </div>
-            <div class="mt-10  md:mt-8">
-                <select class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
+            <div class="mt-10 md:mt-6">
+                <p class=" text-white bg-red-600 rounded-sm w-100">{{ errors.age }}</p>
+                <input type="number" placeholder="Student Age" v-model="student.age"
+                    class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
+            </div>
+            <div class="mt-10 md:mt-6">
+                <p class=" text-white bg-red-600 rounded-sm w-100">{{ errors.classroom_id }}</p>
+                <select v-model="student.classroom_id"
+                    class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
                     <option selected hidden class=" text-white">Student Class</option>
-                    <option>Abdeladim Abid</option>
-                    <option>Null</option>
+                    <option v-for="classroom in classrooms" :value="classroom.id">{{ classroom.name }}</option>
                 </select>
             </div>
-            <div class="mt-10  md:mt-8">
-                <button type="button" class="w-100 bg-gradient-to-r from-fuchsia-400 to-purple-500 text-white shadow-md pt-2 pb-2 rounded-full">Update</button>
+            <div class="mt-10  md:mt-6">
+                <p class=" text-white bg-red-600 rounded-sm w-100">{{ errors.sibling_id }}</p>
+                <select v-model="student.sibling_id"
+                    class="w-100 placeholder:font-thin focus:outline-none bg-gradient-to-b from-gray-200 to-white rounded-full px-4 pt-2 pb-2">
+                    <option selected hidden class=" text-white">Student Sibling</option>
+                    <option v-for="sibling in siblings" :value="sibling.id">{{ sibling.name }}</option>
+                </select>
             </div>
+            <div class="mt-10  md:mt-6">
+                <button type="button" @click="submitHandle"
+                    class="w-100 bg-gradient-to-r from-fuchsia-400 to-purple-500 text-white shadow-md pt-2 pb-2 rounded-full">Update</button>
+            </div>
+            <a href="../../dashboard" class=" decoration-transparent">
+                <p class="w-100 text-start mt-2">Return To Dashboard</p>
+            </a>
         </div>
     </section>
 </template>
+
+<script>
+import axios from 'axios'
+import router from '@/router/router'
+
+
+export default {
+    data() {
+        return {
+            token: '',
+            headers: '',
+            id: '',
+            student: {
+                name: '',
+                age: null,
+                image: {},
+                classroom_id: null,
+                sibling_id: null
+            },
+            errors: {
+                name: '',
+                age: '',
+                image: '',
+                classroom_id: '',
+                sibling_id: ''
+            },
+            classrooms: [],
+            siblings: []
+        }
+    },
+    methods: {
+        successAlert() {
+            this.$swal({
+                title: 'Success',
+                text: 'Student created successfully!',
+                icon: 'success',
+                confirmButtonText: 'ok'
+            });
+        },
+        authenticationAlert() {
+            this.$swal({
+                title: 'Error',
+                text: 'You Are Not Authenticated',
+                icon: 'warning',
+                confirmButtonText: 'Login'
+            });
+        },
+        authorizationAlert() {
+            this.$swal({
+                title: 'Error',
+                text: 'You Are Not Allowed To Access This Page',
+                icon: 'error',
+                confirmButtonText: 'Connect'
+            });
+        },
+        async submitHandle() {
+            if (this.token == null) {
+                this.authenticationAlert()
+                router.push("/login");
+            }
+
+            const formData = new FormData();
+            formData.append('name', this.student.name);
+            formData.append('age', this.student.age);
+            formData.append('classroom_id', this.student.classroom_id);
+            formData.append('sibling_id', this.student.sibling_id);
+            formData.append('image', this.student.image);
+            
+            console.log(formData.get('name'))
+            console.log(formData.get('age'))
+            console.log(formData.get('classroom_id'))
+            console.log(formData.get('sibling_id'))
+
+            console.log(formData.get('image'))
+
+            try {
+                const res = await axios.post('http://127.0.0.1:8000/api/students/' + this.id + '?_method=put', formData, { headers: this.headers })
+                console.log(res)
+                this.successAlert()
+                router.push('/admin/dashboard')
+            } catch (e) {
+                console.log(e)
+                if (e.response.status == 422) {
+                    if (e.response.data.errors.hasOwnProperty("name")) {
+                        this.errors.name = e.response.data.errors.name[0]
+                    } else {
+                        this.errors.name = ""
+                    }
+                    if (e.response.data.errors.hasOwnProperty("age")) {
+                        this.errors.age = e.response.data.errors.age[0]
+                    } else {
+                        this.errors.age = ""
+                    }
+                    if (e.response.data.errors.hasOwnProperty("classroom_id")) {
+                        this.errors.classroom_id = e.response.data.errors.classroom_id[0]
+                    } else {
+                        this.errors.classroom_id = ""
+                    }
+                    if (e.response.data.errors.hasOwnProperty("sibling_id")) {
+                        this.errors.sibling_id = e.response.data.errors.sibling_id[0]
+                    } else {
+                        this.errors.sibling_id = ""
+                    }
+                    if (e.response.data.errors.hasOwnProperty("image")) {
+                        this.errors.image = e.response.data.errors.image[0]
+                    } else {
+                        this.errors.image = ""
+                    }
+                } else if (e.response.status == 403) {
+                    this.authorizationAlert()
+                    localStorage.removeItem("token")
+                    router.push("/login")
+                }
+            }
+        },
+        onFileChange(e) {
+            console.log(this.student.image)
+            this.student.image = e.target.files[0]
+            console.log(this.student.image)
+        },
+        async fetch(id) {
+            try {
+                const res = await axios.get('http://127.0.0.1:8000/api/students/' + id, { headers: this.headers })
+                this.student = res.data.student
+                this.classrooms = res.data.classrooms
+                this.siblings = res.data.siblings
+
+                this.student.image = ''
+                this.student.image_url = ''
+
+                console.log(this.student)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+    },
+    async mounted() {
+        this.token = localStorage.getItem('token')
+        this.headers = { Authorization: `Bearer ${this.token}` }
+        this.id = this.$route.params.id
+        await this.fetch(this.id)
+    }
+}
+</script>

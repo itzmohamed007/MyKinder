@@ -1,7 +1,7 @@
 <template>
   <section class="hero container d-flex align-items-center justify-content-center">
     <div class="hero-content h-100 w-50 mx-5 d-flex flex-column justify-content-center text-start text-black">
-      <h1 class="fw-bold mb-3">Making Kindergarten Management More Human!</h1>
+      <h1 class="fw-bold mb-3">making Kindergarten Management More Human!</h1>
       <p class="fs-6 fw-light">
         Our system is designed to help administrators and professors to manage
         children's education and development ...
@@ -158,9 +158,10 @@
 </template>
 
 <script>
-import router from "../router";
+import router from "@/router/router";
 import { Icon } from "@iconify/vue";
 export default {
+  name: 'Home',
   components: {
     Icon
   },
