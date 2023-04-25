@@ -18,15 +18,14 @@
     </div>
   </section>
   <section>
-    <div class="w-admin-resposive lg:w-admin-full-width bg-gradient-to-r from-lavender to-violet-600 min-h-screen">
+    <div class="w-admin-resposive lg:w-admin-full-width bg-white min-h-screen">
       <div class="p-5 grid lg:grid-cols-2 gap-3">
-        <Kid />
-        <Kid />
+        <Kid :children="childrens" />
       </div>
     </div>
   </section>
 </template>
-  
+
 <script>
 import axios from 'axios'
 import router from '@/router/router'
@@ -36,7 +35,9 @@ export default {
   data() {
     return {
       token: '',
-      headers: ''
+      headers: '',
+      childrens: null,
+      id: null
     }
   },
   components: {
@@ -59,10 +60,21 @@ export default {
       this.logoutAlert()
       router.push('../../login')
     },
+    async fetch() {
+      try {
+        const res = await axios.get('http://127.0.0.1:8000/api/siblings/' + this.id, { headers: this.headers })
+        this.childrens = res.data.children
+        console.log(res)
+      } catch(e) {
+        console.log(e)
+      }
+    }
   },
-  mounted() {
+  async mounted() {
     this.token = localStorage.getItem('token')
     this.headers = { Authorization: `Bearer ${this.token}` }
+    this.id = localStorage.getItem('id')
+    await this.fetch()
   }
 }
 </script>

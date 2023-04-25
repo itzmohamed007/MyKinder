@@ -20,7 +20,7 @@
   <section>
     <div class="w-admin-resposive lg:w-admin-full-width min-h-screen">
       <div class="p-5 grid lg:grid-cols-3 md:grid-cols-2 gap-3">
-        <Card :students="students"/>
+        <Card :students="students" @newTriger="fetch()"/>
       </div>
     </div>
   </section>
@@ -56,6 +56,7 @@ export default {
     async logout() {
       await axios.post('http://127.0.0.1:8000/api/logout', {}, { headers: this.headers })
       localStorage.removeItem('token')
+      localStorage.removeItem('id')
       localStorage.removeItem('role')
       this.logoutAlert()
       router.push('../../login')
@@ -63,8 +64,8 @@ export default {
     async fetch() {
       try {
         const res = await axios.get('http://127.0.0.1:8000/api/students', { headers : this.headers })
-        console.log(res.data)
         this.students = res.data
+        console.log(this.students)
       } catch(e) {
         console.log(e)
       }

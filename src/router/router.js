@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 const ParentUpdate = () => import('@/views/admin/parents/UpdateParent.vue')
 const AdminDashboard = () => import('@/views/admin/AdminDashboard.vue')
 const Connection = () => import('@/views/Connection.vue')

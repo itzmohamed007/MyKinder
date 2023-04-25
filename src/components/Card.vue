@@ -1,7 +1,7 @@
 <template>
-  <Status v-if="formV" @close="closeForm" />
+  <Status v-if="formV" @close="closeForm" :StudentId="studentToUpdate" @triger="fetch()" />
   <div class="text-start w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg border-violet-600 border-2"
-    v-for="student in filteredStudents" :key="student.id">
+  v-for="student in filteredStudents" :key="student.id">
     <div class="flex justify-center -mt-16 md:justify-end">
       <img class="object-cover w-20 h-20 border-2 border-violet-600 rounded-full" :src="student.image_url">
     </div>
@@ -20,10 +20,12 @@ import { Icon } from "@iconify/vue"
 import Status from '@/components/Status.vue'
 
 export default {
+  emits: ['newTriger'],
   data() {
     return {
       filteredStudents: [],
-      formV: false
+      formV: false,
+      studentToUpdate: null
     }
   },
   components: {
@@ -39,13 +41,13 @@ export default {
   methods: {
     updateHandle(id) {
       this.formV = true
-      console.log('form opended')
-      console.log(this.formV)
+      this.studentToUpdate = id
     },
     closeForm() {
       this.formV = false
-      console.log('form closed')
-      console.log(this.formV)
+    },
+    fetch() {
+      this.$emit('newTriger')
     }
   },
   watch: {
