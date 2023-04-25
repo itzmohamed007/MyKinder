@@ -68,8 +68,9 @@
 
 <script>
 import axios from "axios";
-import { Icon } from "@iconify/vue";
-import router from "@/router/router";
+import { Icon } from "@iconify/vue"
+import router from "@/router/router"
+
 export default {
   data() {
     return {

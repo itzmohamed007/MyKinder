@@ -6,10 +6,6 @@
         <h1 class="mt-3 text-3xl hidden lg:block">MyKinder</h1>
       </div>
       <ul class="w-full text-start p-0">
-        <li class="flex ps-0 py-2 lg:ps-4 lg:py-2 align-middle hover:bg-violet-700">
-          <Icon class="mx-auto lg:mx-0 lg:w-1/4" icon="ph:student-fill" width="35px" />
-          <p class="self-center m-0 font-light text-md hidden lg:block w-full">Mohamed Moustaghfir</p>
-        </li>
         <li class="cursor-pointer flex ps-0 py-2 lg:ps-4 lg:py-2 align-middle hover:bg-red-600" @click="logout()">
           <Icon class="mx-auto lg:mx-0 lg:w-1/4" icon="material-symbols:logout" width="35px" color="white" />
           <p class="self-center m-0 font-light text-lg hidden lg:block w-3/4">Logout</p>
@@ -20,7 +16,7 @@
   <section>
     <div class="w-admin-resposive lg:w-admin-full-width bg-white min-h-screen">
       <div class="p-5 grid lg:grid-cols-2 gap-3">
-        <Kid :children="childrens" />
+        <Kid :childrensList="childrens" />
       </div>
     </div>
   </section>
