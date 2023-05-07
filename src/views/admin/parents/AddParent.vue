@@ -24,9 +24,9 @@
           class="w-100 bg-gradient-to-r from-fuchsia-400 to-purple-500 text-white shadow-md pt-2 pb-2 rounded-full">
           Create
         </button>
-        <a href="../../admin/dashboard" class=" decoration-transparent">
+        <router-link to="../../admin/dashboard" class="decoration-transparent">
           <p class="w-100 text-start mt-2">Return To Dashboard</p>
-        </a>
+        </router-link>
       </div>
     </div>
   </section>

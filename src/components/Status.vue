@@ -28,10 +28,8 @@ export default {
   methods: {
     async updateHandle() {
       try {
-        console.log(this.status)
         const res = await axios.put('http://127.0.0.1:8000/api/status/' + this.StudentId, { 'status': this.status }, { headers: this.headers})
         this.$emit('triger')
-        console.log(res)
       } catch(e) {
         console.log(e)
       }

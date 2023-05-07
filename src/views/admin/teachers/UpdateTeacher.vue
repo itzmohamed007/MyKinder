@@ -21,9 +21,9 @@
                 <button type="button" @click="updateHandle(teacher.id)"
                     class="w-100 bg-gradient-to-r from-fuchsia-400 to-purple-500 text-white shadow-md pt-2 pb-2 rounded-full">Update</button>
             </div>
-            <a href="../../../admin/dashboard" class=" decoration-transparent">
+            <router-link to="../../../admin/dashboard" class="decoration-transparent">
                 <p class="w-100 text-start mt-2">Return To Dashboard</p>
-            </a>
+            </router-link>
         </div>
     </section>
 </template>
@@ -117,7 +117,6 @@ export default {
                 const res = await axios.get('http://127.0.0.1:8000/api/teachers/' + id,
                     { headers: this.headers })
                 this.teacher = res.data
-                console.log(this.teacher)
             } catch (e) {
                 console.log(e)
             }

@@ -42,7 +42,7 @@
                                         <div class="text-gray-900">{{ classroom.students.length }}</div>
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <div class="text-gray-900">{{ classroom.teacher.name }}</div>
+                                        <div class="text-gray-900">{{ classroom.teacher?.name || 'null' }}</div>
                                     </td>
                                     <td
                                         class="flex justify-start py-4 px-3 text-right text-sm font-medium sm:pr-6 align-middle">
@@ -100,7 +100,6 @@ export default {
                 let response = await axios.delete("http://127.0.0.1:8000/api/classrooms/" + id,
                     { headers: this.headers },
                 );
-                console.log(response)
                 this.successAlert()
                 this.$emit("triger");
             } catch (e) {

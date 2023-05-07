@@ -22,9 +22,9 @@
                     class="w-100 bg-gradient-to-r from-fuchsia-400 to-purple-500 text-white shadow-md pt-2 pb-2 rounded-full">
                     Update
                 </button>
-                <a href="../../../admin/dashboard" class=" decoration-transparent">
+                <router-link to="../../../admin/dashboard" class="decoration-transparent">
                     <p class="w-100 text-start mt-2">Return To Dashboard</p>
-                </a>
+                </router-link>
             </div>
         </div>
     </section>
@@ -78,7 +78,7 @@ export default {
             });
         },
         async updateHandle(id) {
-            if(this.token == null) {
+            if (this.token == null) {
                 this.authenticationAlert()
                 router.push('../../login')
             }
@@ -88,7 +88,6 @@ export default {
                     { headers: this.headers },
                 );
                 this.successAlert()
-                console.log(response)
                 this.$emit("triger");
                 router.push('../../../admin/dashboard')
             } catch (e) {
@@ -121,7 +120,6 @@ export default {
                 const res = await axios.get('http://127.0.0.1:8000/api/siblings/' + id,
                     { headers: this.headers })
                 this.sibling = res.data
-                console.log(this.sibling)
             } catch (e) {
                 console.log(e)
             }

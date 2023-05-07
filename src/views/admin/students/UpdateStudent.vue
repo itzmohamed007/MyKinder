@@ -38,9 +38,9 @@
                 <button type="button" @click="submitHandle"
                     class="w-100 bg-gradient-to-r from-fuchsia-400 to-purple-500 text-white shadow-md pt-2 pb-2 rounded-full">Update</button>
             </div>
-            <a href="../../dashboard" class=" decoration-transparent">
+            <router-link to="../../../admin/dashboard" class="decoration-transparent">
                 <p class="w-100 text-start mt-2">Return To Dashboard</p>
-            </a>
+            </router-link>
         </div>
     </section>
 </template>
@@ -111,7 +111,7 @@ export default {
             formData.append('classroom_id', this.student.classroom_id);
             formData.append('sibling_id', this.student.sibling_id);
             formData.append('image', this.student.image);
-            
+
             console.log(formData.get('name'))
             console.log(formData.get('age'))
             console.log(formData.get('classroom_id'))

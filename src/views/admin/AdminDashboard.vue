@@ -85,10 +85,7 @@ export default {
       });
     },
     async logout() {
-      console.log('trying to logot')
-      console.log(this.headers)
       const res = await axios.post('http://127.0.0.1:8000/api/logout', {}, { headers: this.headers })
-      console.log(res)
       localStorage.removeItem('token')
       localStorage.removeItem('role')
       this.logoutAlert()
@@ -105,7 +102,6 @@ export default {
             this.students = response.data.students
             this.teachers = response.data.teachers
             this.siblings = response.data.siblings
-            console.log(response.data.students)
           })
       } catch (e) {
         console.log(e)

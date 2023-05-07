@@ -5,12 +5,11 @@
         <h1 class="text-3xl font-semibold text-gray-900">Students</h1>
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <a href="/admin/student/create">
-          <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent 
-            bg-violet-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-violet-600 
-            focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto 
-            cursor-pointer">Add student</button>
-        </a>
+        <router-link to="/admin/student/create">
+          <button type="button"
+            class="inline-flex items-center justify-center rounded-md border border-transparent bg-violet-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto cursor-pointer">Add
+            student</button>
+        </router-link>
       </div>
     </div>
     <div class="mt-8 flex flex-col">
@@ -55,7 +54,8 @@
                   </td>
                   <td class="flex py-4 px-3 text-right text-sm font-medium sm:pr-6 align-middle">
                     <Icon icon="tabler:edit" width="30" class="mx-2 cursor-pointer" @click="updateHandle(student.id)" />
-                    <Icon @click="deleteHandle(student.id)" icon="ic:round-delete-sweep" width="30" class="mx-2 cursor-pointer" />
+                    <Icon @click="deleteHandle(student.id)" icon="ic:round-delete-sweep" width="30"
+                      class="mx-2 cursor-pointer" />
                   </td>
                 </tr>
               </tbody>
@@ -99,7 +99,7 @@ export default {
     },
     deleteHandle(id) {
       try {
-        axios.delete('http://127.0.0.1:8000/api/students/' + id, { headers: this.headers})
+        axios.delete('http://127.0.0.1:8000/api/students/' + id, { headers: this.headers })
         this.successAlert()
         this.$emit('triger')
       } catch (e) {

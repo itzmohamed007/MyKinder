@@ -21,15 +21,14 @@
                 <button type="button" @click="submitHandle"
                     class="w-100 bg-gradient-to-r from-fuchsia-400 to-purple-500 text-white shadow-md pt-2 pb-2 rounded-full">Create</button>
             </div>
-            <a href="../../admin/dashboard" class=" decoration-transparent">
+            <router-link to="../../admin/dashboard" class="decoration-transparent">
                 <p class="w-100 text-start mt-2">Return To Dashboard</p>
-            </a>
+            </router-link>
         </div>
     </section>
 </template>
 
 <script>
-import Swal from 'sweetalert2'
 import router from '@/router/router'
 import axios from 'axios'
 
@@ -88,8 +87,7 @@ export default {
                 router.push("/login");
             }
             try {
-                const res = await axios.post("http://127.0.0.1:8000/api/classrooms", this.classroom, { headers: this.headers });
-                console.log(res);
+                await axios.post("http://127.0.0.1:8000/api/classrooms", this.classroom, { headers: this.headers });
                 this.successAlert()
                 router.push("/admin/dashboard");
             } catch (e) {
@@ -120,7 +118,6 @@ export default {
                     router.push('../teacher/create')
                 }
                 this.availableTeachers = res.data
-                console.log(this.availableTeachers)
             } catch (e) {
                 console.log(e)
             }
